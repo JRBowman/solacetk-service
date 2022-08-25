@@ -1,6 +1,11 @@
 schemaVersion: 2.1.0
 metadata:
   name: solacetk-service
+projects:
+  - git:
+      remotes:
+        origin: 'https://dev.azure.com/bowman-redhat/dotnet-msoa/_git/service-api'
+    name: dotnet-api
 components:
   - name: tools
     container:
@@ -27,21 +32,21 @@ commands:
   - id: 1-update-dependencies
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      workingDir: ${PROJECTS_ROOT}/service-api
       commandLine: "dotnet restore"
       group:
         kind: build
   - id: 2-build
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      workingDir: ${PROJECTS_ROOT}/service-api
       commandLine: "dotnet build"
       group:
         kind: build
   - id: 3-run
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      workingDir: ${PROJECTS_ROOT}/service-api
       commandLine: "dotnet run"
       group:
         kind: run
