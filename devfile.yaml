@@ -1,1 +1,47 @@
-version: 2.0.0
+schemaVersion: 2.1.0
+metadata:
+  name: solacetk-service
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8:3.1
+      memoryLimit: 2Gi
+      mountSources: true
+      endpoints:
+        - exposure: public
+          name: 'soltk-api'
+          protocol: http
+          targetPort: 5000
+      volumeMounts:
+        - name: nuget
+          path: /home/user/.nuget
+    attributes:
+      che-theia.eclipse.org/vscode-extensions:
+        - 'omnisharp-roslyn'
+        - 'omnisharp-theia'
+        - 'netcoredbg' 
+    - name: nuget
+    volume:
+      size: 1G
+commands:
+  - id: 1-update-dependencies
+    exec:
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      commandLine: "dotnet restore"
+      group:
+        kind: build
+  - id: 2-build
+    exec:
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      commandLine: "dotnet build"
+      group:
+        kind: build
+  - id: 3-run
+    exec:
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-web-simple
+      commandLine: "dotnet run"
+      group:
+        kind: run
