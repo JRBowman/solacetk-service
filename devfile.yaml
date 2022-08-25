@@ -24,9 +24,9 @@ components:
       che-theia.eclipse.org/vscode-extensions:
         - 'https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia'
         - 'https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.3/netcoredbg_theia_plugin.theia' 
-    - name: nuget
-      volume:
-        size: 1G
+  - name: nuget
+    volume:
+      size: 1G
 commands:
   - id: 1-update-dependencies
     exec:
