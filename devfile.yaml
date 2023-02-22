@@ -16,22 +16,6 @@ projects:
         revision: master
       remotes:
         origin: https://dev.azure.com/onbowman/solace-toolkit/_git/solace-toolkit
-components:
-  - container:
-      endpoints:
-        - name: http
-          targetPort: 4200
-      image: registry.access.redhat.com/ubi8/nodejs-16:latest
-      volumeMounts:
-        - name: npm
-          path: /home/user/.npm
-      memoryLimit: 1024Mi
-      mountSources: true
-      sourceMapping: /projects
-    name: runtime
-  - name: npm
-    volume:
-      size: 5Gi
 commands:
   - exec:
       commandLine: npm install
