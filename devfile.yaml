@@ -16,6 +16,17 @@ projects:
         revision: master
       remotes:
         origin: https://dev.azure.com/onbowman/solace-toolkit/_git/solace-toolkit
+components:
+  - container:
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:8de469cc9131a42092bd66e0f27a52bbc9b9a449235abf5b900d172a1bd3c985'
+      sourceMapping: /projects
+      volumeMounts:
+        - name: npm
+          path: /home/users/.npm
+    name: universal-developer-image
+  - name: npm
+    volume:
+      size: 5Gi
 commands:
   - exec:
       commandLine: npm install
