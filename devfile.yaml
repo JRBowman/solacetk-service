@@ -22,7 +22,7 @@ components:
       sourceMapping: /projects
       volumeMounts:
         - name: npm
-          path: /home/users/.npm
+          path: /home/user/.npm
     name: ngruntime
   - name: npm
     volume:
