@@ -18,7 +18,7 @@ projects:
         origin: https://dev.azure.com/onbowman/solace-toolkit/_git/solace-toolkit
 components:
   - container:
-      image: 'image-registry.openshift-image-registry.svc:5000/bowman-dev/angular-devspace'
+      image: 'registry.redhat.io/rhel8/nodejs-18@sha256:f8c07a883506a19075bbf2030699704b776f8cc68c90e26aa25164cae2d62282'
       sourceMapping: /projects
       volumeMounts:
         - name: npm
