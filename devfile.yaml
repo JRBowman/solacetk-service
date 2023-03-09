@@ -23,6 +23,8 @@ components:
       volumeMounts:
         - name: npm
           path: /home/user/.npm
+      command: ['tail']
+      args: ['-f', '/dev/null']
     name: ngruntime
   - name: npm
     volume:
