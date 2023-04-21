@@ -3,6 +3,9 @@
 [![solacetk](https://img.shields.io/badge/SolaceTK-API%20Demo-blue)](https://solacetk-core-dev-bowman-dev.apps.bocp.onbowman.com/swagger)
 
 The SolaceTK Core Service provides an API for Tool Kit UI to perform common CRUD operations as well as File Upload support, this service uses `Entity Framework` (EF) as the 'ORM' to interact with SQL databases (EF supports using many DBs as sources using the proper SQLConnectionProvider Nuget Package.)
+
+![image](https://user-images.githubusercontent.com/29755339/233690504-84fc7b4e-13ac-4b47-99da-8cc40cecf1c8.png)
+
 - `Version 1` of the Core Services is delivered through a single `.NET 7` ASP.NET WebAPI for ease of use and debugging.
 - `Version 2` will be delivered as microservices, the current 'boilerplate' has a number of EF Contexts to define the different segmentation of data.
 - `Swashbuckle` provides the Swagger/OpenAPI3 API Documentation and UI: `https://*:<port>/swagger` (this will redirect to the Swagger UI)
