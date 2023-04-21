@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Onbowman.MSOA.Arranger/.vs/Onbowman.MSOA.Arranger/v16
+/Onbowman.MSOA.Arranger/obj
+/Onbowman.MSOA.Arranger/bin/Debug/net5.0
+/Onbowman.MSOA.Arranger/bin/Debug/net6.0
+/Onbowman.MSOA.Arranger/.vs/Onbowman.MSOA.Arranger
+/Onbowman.MSOA.Arranger/.vs/ProjectEvaluation
+/SolaceTK.Core/.vs
+/SolaceTK.Core/bin/Debug/net7.0
+/SolaceTK.Core/obj
+/SolaceTK.Core/Properties/PublishProfiles

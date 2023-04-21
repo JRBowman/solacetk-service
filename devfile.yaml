@@ -1,47 +1,64 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.0
 metadata:
-  name: solacetk-service
+  description: Stack with Dotnet 7
+  displayName: Dotnet
+  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/angular.svg
+  language: c#
+  name: solacetk-core
+  projectType: dotnet
+  tags:
+    - Dotnet
 projects:
-  - git:
+  - name: solace-core
+    git:
+      checkoutFrom:
+        revision: main
       remotes:
-        origin: 'https://dev.azure.com/bowman-redhat/dotnet-msoa/_git/service-api'
-    name: dotnet-api
+        origin: https://bitbucket.org/onbowman/solace-core.git
 components:
-  - name: tools
-    container:
-      image: registry.redhat.io/devspaces/udi-rhel8:3.1
-      memoryLimit: 2Gi
+  - container:
+      command:
+        - /checode/entrypoint-volume.sh
+      cpuLimit: '2000m'
+      cpuRequest: '500m'
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:8de469cc9131a42092bd66e0f27a52bbc9b9a449235abf5b900d172a1bd3c985'
+      memoryLimit: 4G
+      memoryRequest: 1024Mi
       mountSources: true
-      endpoints:
-        - exposure: public
-          name: 'soltk-api'
-          protocol: http
-          targetPort: 5000
+      sourceMapping: /projects
       volumeMounts:
         - name: nuget
           path: /home/user/.nuget
+        - name: checode
+          path: /checode
+    name: tools
   - name: nuget
     volume:
-      size: 1G
+      size: 5Gi
 commands:
-  - id: 1-update-dependencies
-    exec:
+  - exec:
+      commandLine: dotnet restore
       component: tools
-      workingDir: ${PROJECTS_ROOT}/service-api
-      commandLine: "dotnet restore"
       group:
+        isDefault: true
         kind: build
-  - id: 2-build
-    exec:
+      workingDir: ${PROJECTS_ROOT}/solace-core
+    id: restore
+  - exec:
+      commandLine: dotnet build
       component: tools
-      workingDir: ${PROJECTS_ROOT}/service-api
-      commandLine: "dotnet build"
       group:
+        isDefault: true
         kind: build
-  - id: 3-run
-    exec:
+      hotReloadCapable: true
+      workingDir: ${PROJECTS_ROOT}/solace-core
+    id: build
+  - exec:
+      commandLine: dotnet run
       component: tools
-      workingDir: ${PROJECTS_ROOT}/service-api
-      commandLine: "dotnet run"
       group:
+        isDefault: true
         kind: run
+      hotReloadCapable: true
+      workingDir: ${PROJECTS_ROOT}/solace-core
+    id: run

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "SolaceTK.Core": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "SOLTK_AUTHORITY": "https://msoa.onbowman.com:5000",
+        "ASPNETCORE_URLS": "http://*:5010",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SOLTK_ENABLE_TLS": "false"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "http://localhost:5010"
+    }
+  }
+}
