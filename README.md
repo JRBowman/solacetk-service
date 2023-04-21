@@ -1,4 +1,6 @@
 # SolaceTK Core Service
+[![solacetk](https://img.shields.io/badge/SolaceTK-API%20Demo-blue)](https://solacetk-core-dev-bowman-dev.apps.bocp.onbowman.com/swagger)
+
 The SolaceTK Core Service provides an API for Tool Kit UI to perform common CRUD operations as well as File Upload support, this service uses `Entity Framework` (EF) as the 'ORM' to interact with SQL databases (EF supports using many DBs as sources using the proper SQLConnectionProvider Nuget Package.)
 - `Version 1` of the Core Services is delivered through a single `.NET 7` ASP.NET WebAPI for ease of use and debugging.
 - `Version 2` will be delivered as microservices, the current 'boilerplate' has a number of EF Contexts to define the different segmentation of data.
@@ -8,6 +10,7 @@ The SolaceTK Core Service provides an API for Tool Kit UI to perform common CRUD
 - See the `solacetk-identity` repository for more information on using `.NET 7` to host your own Central Token Authority / Claims-based Identity Provider using `Identity Server Nuget Pacakge` + `ASP.NET Identity` + `Entity Framework`
 - Using `Identity Server` allows you to host an entire Identity Provider/Service Provider solution as a Source-Controlled Microservice, maximum control over integrations and application lifecycle.
 - `solacektk-identity` repository provides a full working example to deploy alongside the `solacetk-service`.
+- [![solacetk](https://img.shields.io/badge/SolaceTK-API%20Demo-blue)](https://solacetk-core-dev-bowman-dev.apps.bocp.onbowman.com/swagger) - Demo of the Service can be accessed here!
 
 # Application Runtime Configuration:
 The example `kubernetes` secret below shows the configurations that can be applied via `Environment Variables`. Additional Configuration Options using the common .NET `appsettings.json` will be added as development continues!
