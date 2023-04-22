@@ -1,6 +1,8 @@
 # SolaceTK Core Service
-[![solace-toolkit](https://img.shields.io/badge/SolaceTK-Home-green)](https://github.com/JRBowman/solace-toolkit)
-[![solacetk](https://img.shields.io/badge/SolaceTK-API%20Demo-blue)](https://solacetk-core-dev-bowman-dev.apps.bocp.onbowman.com/swagger)
+[![solace-toolkit](https://img.shields.io/badge/SolaceTK-Home-purple)](https://github.com/JRBowman/solace-toolkit)
+[![solace-toolkit](https://img.shields.io/badge/SolaceTK-Home-green)](https://github.com/JRBowman/solacetk-service)
+[![solacetk](https://img.shields.io/badge/SolaceTK-UI%20Demo-blue)](https://solacetk-ui-dev-bowman-dev.apps.bocp.onbowman.com/)
+[![solacetk](https://img.shields.io/badge/SolaceTK-API%20Demo-yellow)](https://solacetk-core-dev-bowman-dev.apps.bocp.onbowman.com/swagger)
 
 The SolaceTK Core Service provides an API for Tool Kit UI to perform common CRUD operations as well as File Upload support, this service uses `Entity Framework` (EF) as the 'ORM' to interact with SQL databases (EF supports using many DBs as sources using the proper SQLConnectionProvider Nuget Package.)
 
