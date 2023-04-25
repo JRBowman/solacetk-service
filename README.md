@@ -51,3 +51,23 @@ Two options currently exist to build the `solacetk-service` (outside of creating
 Using method `1` will include the underlying dependency for using `Aseprite` to load `.ase` files and process them - `Aseprite` isn't required for the API to function, it's only needed when you intend to use the `Animations` features with the `Aseprite` Integration.
 
 Using method `2` will produce the application.dll and it's dependencies and is ready to be deployed or ran. (This method doesn't automatically include aseprite in the runtime environment and Aseprites features will be unavailable.)
+
+# Authentication and Authorization:
+The `Startup.cs` file in the Core API contains the following code to enable JWT/Bearer Authentication. ASP WebAPIs use this JWT token to _reconstruct_ the `User Identity` and `ASP User Session` data per transient request, a nice mechanism to enable a _Central Token Authority_ in any dotnet Application stack!
+
+Additional options are included but commented out to show a more 'full range' of options that can be used to configure - the default values are for Development purposes only and _shouldn't_ be used in any production scenario (Token Audience validation is disabled to support any oidc `Token Authority` during development)
+```
+services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = Program.Authority;
+        options.TokenValidationParameters.ValidateAudience = false;
+        //options.TokenValidationParameters.IssuerSigningKey = new SecurityKey();
+        options.RequireHttpsMetadata = false;
+        //options.TokenValidationParameters.RequireSignedTokens = false;
+        //options.TokenValidationParameters.ValidateIssuer = false;
+        //options.TokenValidationParameters.ValidateIssuerSigningKey = false;
+    });
+```
+- `Authorization` can also be enabled in the WebAPI to use the Claims Data of the JWT (in conjunction with the ASP User Session data) and Authorize API Endpoint requests.
+  - Using `Tokens` and `Claims-Based Authentication` enables simplicity across implementations and _broadens_ the horizons for using other technologies on the Frontend (like SolaceTK using Angular in the front and all dotnet in the back!)
