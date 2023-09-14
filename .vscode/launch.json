@@ -3,7 +3,7 @@
     "configurations": [
         {
             // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
+            // Use hover for the description of sthe existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
@@ -13,8 +13,8 @@
             "program": "${workspaceFolder}/SolaceTK.Core/bin/Debug/net7.0/SolaceTK.Core.dll",
             "args": [],
             "cwd": "${workspaceFolder}/SolaceTK.Core",
-            "stopAtEntry": true,
-            "internalConsoleOptions": "openOnSessionStart",
+            "stopAtEntry": false,
+            //"internalConsoleOptions": "openOnSessionStart",
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"

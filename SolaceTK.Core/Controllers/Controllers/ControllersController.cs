@@ -93,7 +93,7 @@ namespace SolaceTK.Core.Controllers
             }
             else if (model.SoundSet != null) entity.SoundSet.Id = model.SoundSet.Id;
             entity.BehaviorSystemId = model.BehaviorSystemId;
-            
+
             try
             {
                 var savedCount = await _context.SaveChangesAsync();
@@ -161,12 +161,13 @@ namespace SolaceTK.Core.Controllers
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SoundSource>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -186,7 +187,7 @@ namespace SolaceTK.Core.Controllers
                 }
                 else _soundContext.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 
@@ -194,12 +195,13 @@ namespace SolaceTK.Core.Controllers
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkComponent>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -219,7 +221,7 @@ namespace SolaceTK.Core.Controllers
                 }
                 else _controllerContext.Components.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 
@@ -227,12 +229,13 @@ namespace SolaceTK.Core.Controllers
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkData>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -247,7 +250,7 @@ namespace SolaceTK.Core.Controllers
                 }
                 else _controllerContext.ControllerData.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
     }

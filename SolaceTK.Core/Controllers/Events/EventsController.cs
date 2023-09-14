@@ -130,19 +130,20 @@ namespace SolaceTK.Core.Controllers.Events
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<BehaviorMessage>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedEvents = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedEvents = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedEvents);
             }
 
             for (var i = 0; i < temp.Count; i++)
             {
                 var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                if (m == null) temp.RemoveAt(i);
+                if (m == null) removed.Add(temp[i].Id);
                 else if (temp[i].Id > 0)
                 {
                     _context.Entry(temp[i]).CurrentValues.SetValues(m);
@@ -150,7 +151,7 @@ namespace SolaceTK.Core.Controllers.Events
                 }
                 else _context.Messages.Add(m);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 
@@ -158,12 +159,13 @@ namespace SolaceTK.Core.Controllers.Events
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkData>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -173,16 +175,16 @@ namespace SolaceTK.Core.Controllers.Events
                 {
                     // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
                     else _context.Entry(temp[i]).CurrentValues.SetValues(m);
                 }
                 else _context.AttributeData.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 
@@ -190,12 +192,13 @@ namespace SolaceTK.Core.Controllers.Events
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkCondition>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -205,16 +208,16 @@ namespace SolaceTK.Core.Controllers.Events
                 {
                     // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
                     else _context.Entry(temp[i]).CurrentValues.SetValues(m);
                 }
                 else _context.ConditionsData.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 

@@ -28,9 +28,12 @@ namespace SolaceTK.Core.Models.Behavior
 
         // Parent (Many to Many?)
         //public int BehaviorStateId { get; set; }
-        public ICollection<BehaviorState> BehaviorStates { get; set; }
+        //public ICollection<BehaviorState> BehaviorStates { get; set; }
 
+        // Associated System Owner:
         public int BehaviorSystemId { get; set; }
+        // Associated State Owner:
+        public int ParentId { get; set; }
 
         public string StartDelay { get; set; }
         public string EndDelay { get; set; }

@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SOLTK_AUTHORITY": "https://msoa.onbowman.com:5000",
+        "ASPNETCORE_URLS": "http://*:5010",
+        "SOLTK_ENABLE_TLS": "false"
+      }
+    }
+  }
+}

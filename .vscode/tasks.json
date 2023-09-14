@@ -36,6 +36,14 @@
                 "${workspaceFolder}/SolaceTK.Core/SolaceTK.Core.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "che",
+            "command": "dotnet run",
+            "workdir": "${PROJECTS_ROOT}/solace-core",
+            "component": "tools",
+            "problemMatcher": [],
+            "label": "che: run"
         }
     ]
 }

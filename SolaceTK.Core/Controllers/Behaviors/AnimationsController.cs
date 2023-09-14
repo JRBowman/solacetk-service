@@ -134,7 +134,8 @@ namespace SolaceTK.Core.Controllers.Behaviors
         {
             if (frames == null || frames.Count == 0) return entities;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<BehaviorAnimationFrame>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != frames.Count)
@@ -149,12 +150,12 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 if (temp[i].Id > 0)
                 {
                     var m = frames.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
-                    else 
+                    else
                     {
                         _context.Entry(temp[i]).CurrentValues.SetValues(m);
                         temp[i].DownstreamData = CheckDownstreamData(temp[i].DownstreamData, m.DownstreamData);
@@ -163,6 +164,7 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 else _context.Frames.Add(temp[i]);
             }
 
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
 
@@ -170,12 +172,13 @@ namespace SolaceTK.Core.Controllers.Behaviors
         {
             if (model == null || model.Count == 0) return null;
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkData>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -185,16 +188,17 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 {
                     // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
                     else _context.Entry(temp[i]).CurrentValues.SetValues(m);
                 }
                 else _context.AttributeData.Add(temp[i]);
             }
 
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
             return temp;
         }
     }

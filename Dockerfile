@@ -1,20 +1,21 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-bullseye-slim AS base
+FROM image-registry.openshift-image-registry.svc:5000/bowman-dev/solacetk-ase-image AS base
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build
+FROM registry.access.redhat.com/ubi8/dotnet-70 AS build
 WORKDIR /src
 
-ARG PROJECT_NAME="SolaceTK.Core"
-COPY ["${PROJECT_NAME}.csproj", "/"]
-COPY ["nuget.config", "/"]
+ARG PROJECT_NAME="SolaceTK.Standalone"
+
+#COPY ["${PROJECT_NAME}.csproj", "/"]
+#COPY ["nuget.config", "/"]
 COPY . .
 
-RUN dotnet build "${PROJECT_NAME}.csproj" -c Release -o /app/build
+RUN dotnet build "${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /src/build
 
 FROM build AS publish
-RUN dotnet publish "SolaceTK.Core.csproj" -c Release -o /app/publish
+RUN dotnet publish ./SolaceTK.Standalone/SolaceTK.Standalone.csproj -c Release -o /src/publish
 
 FROM base AS final
 WORKDIR /app
@@ -22,9 +23,5 @@ EXPOSE 8080
 
 ENV ASPNETCORE_URLS "https://*:8080"
 
-COPY --from=publish /app/publish .
-RUN apt-get update
-RUN apt-get install ffmpeg libsm6 libxext6 libx11-dev -y &&\
-	apt-get install -f ./Packages/aseprite.deb
-
-ENTRYPOINT ["dotnet", "SolaceTK.Core.dll"]
+COPY --from=publish /src/publish .
+ENTRYPOINT ["dotnet", "SolaceTK.Standalone.dll"]

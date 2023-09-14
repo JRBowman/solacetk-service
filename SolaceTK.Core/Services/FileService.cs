@@ -94,9 +94,9 @@ namespace SolaceTK.Core.Services
         }
 
         // Check File:
-        public static void FileExists()
+        public static bool FileExists(string path)
         {
-
+            return File.Exists(path);
         }
 
         // Delete File:

@@ -41,7 +41,7 @@ namespace SolaceTK.Core.Services
 
         public async Task<AseFile> ConvertAseToSheet(AseFile file, AseImportOptions options)
         {
-            var result = await Command("-b", "--list-layers", 
+            var result = await Command("-b", "--list-layers", "--list-slices", 
                 $"{file.Directory}/{file.AseName}",
                 $"--sheet {file.Directory}/{file.SheetName}",
                 $"--sheet-type {AseImportOptions.AseSheetTypeStings[(int)options.SheetType]}",
@@ -70,6 +70,17 @@ namespace SolaceTK.Core.Services
                 $"--save-as {file.Directory}/{file.Name}" + "-{layer}-{frame}.png");
 
             //var result2 = await ConvertAseToSheet(file, options);
+
+            return file;
+        }
+
+        public async Task<AseFile> ConvertAseToTileSet(AseFile file, AseImportOptions options)
+        {
+            var result = await Command("-b", "--list-layers", "--list-slices", 
+                $"{file.Directory}/{file.AseName}",
+                $"--sheet {file.Directory}/{file.SheetName}",
+                $"--sheet-type {AseImportOptions.AseSheetTypeStings[(int)options.SheetType]}",
+                $"--data {file.Directory}/{file.Name}.json");
 
             return file;
         }
@@ -124,6 +135,16 @@ namespace SolaceTK.Core.Services
         public async Task<string> ConvertGifToAse(string path, string aseFile)
         {
             return "not yet implemented";
+        }
+
+        #endregion
+
+
+        #region Helper Operations:
+
+        public async Task<string> GetVersion()
+        {
+            return await (Command("--version"));
         }
 
         #endregion

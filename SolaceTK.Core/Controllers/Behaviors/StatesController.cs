@@ -26,31 +26,31 @@ namespace SolaceTK.Core.Controllers.Behaviors
 
         // GET: api/BehaviorState
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BehaviorState>>> GetBehaviorStates([FromQuery]bool noop = false)
+        public async Task<ActionResult<IEnumerable<BehaviorState>>> GetBehaviorStates([FromQuery] bool noop = false)
         {
-            return !noop 
-                ? await _context.States
+            return Ok(!noop
+                ? _context.States
                 .Include(x => x.Animation).ThenInclude(x => x.ActFrameData).ThenInclude(x => x.Frames).ThenInclude(x => x.DownstreamData)
                 .Include(x => x.Conditions)
                 .Include("NextStates")
                 .Include(x => x.Events).ThenInclude(x => x.Messages).ThenInclude(x => x.Data)
                 .Include(x => x.Events).ThenInclude(x => x.Conditions)
                 .Include(x => x.Events).ThenInclude(x => x.DownstreamData)
-                .Include("StartData").Include("EndData").Include("ActData").Where(x => x.NoOp == false).ToListAsync() 
-                : await _context.States
+                .Include("StartData").Include("EndData").Include("ActData").Where(x => x.NoOp == false)
+                : _context.States
                 .Include(x => x.Conditions)
                 .Include("NextStates")
                 .Include(x => x.Events).ThenInclude(x => x.Messages).ThenInclude(x => x.Data)
                 .Include(x => x.Events).ThenInclude(x => x.Conditions)
                 .Include(x => x.Events).ThenInclude(x => x.DownstreamData)
-                .Include("StartData").Include("EndData").Include("ActData").Where(x => x.NoOp == true).ToListAsync();
+                .Include("StartData").Include("EndData").Include("ActData").Where(x => x.NoOp == true));
         }
 
         // GET: api/BehaviorState/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BehaviorState>> GetBehaviorState(int id, [FromQuery]bool noop = false)
+        public async Task<ActionResult<BehaviorState>> GetBehaviorState(int id, [FromQuery] bool noop = false)
         {
-            var state = !noop 
+            var state = !noop
                 ? await _context.States
                 .Include(x => x.Animation).ThenInclude(x => x.ActFrameData).ThenInclude(x => x.Frames).ThenInclude(x => x.DownstreamData)
                 .Include(x => x.Conditions)
@@ -58,7 +58,7 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 .Include(x => x.Events).ThenInclude(x => x.Messages).ThenInclude(x => x.Data)
                 .Include(x => x.Events).ThenInclude(x => x.Conditions)
                 .Include(x => x.Events).ThenInclude(x => x.DownstreamData)
-                .Include("StartData").Include("EndData").Include("ActData").FirstOrDefaultAsync(x => x.Id == id) 
+                .Include("StartData").Include("EndData").Include("ActData").FirstOrDefaultAsync(x => x.Id == id)
                 : await _context.States
                 .Include(x => x.Conditions)
                 .Include("NextStates")
@@ -85,7 +85,7 @@ namespace SolaceTK.Core.Controllers.Behaviors
 
             return CreatedAtAction("GetBehaviorState", new { id = state.Id }, state);
         }
-        
+
         // PUT: api/BehaviorState/5
         [HttpPut("{id}")]
         public async Task<ActionResult<BehaviorState>> PutBehaviorState(int id, BehaviorState state)
@@ -98,12 +98,6 @@ namespace SolaceTK.Core.Controllers.Behaviors
             var entity = (await GetBehaviorState(id, state.NoOp)).Value;
 
             _context.Entry(entity).CurrentValues.SetValues(state);
-            if (entity.Animation != null && entity.Animation.Id == state.Animation.Id) _context.Entry(entity.Animation).CurrentValues.SetValues(state.Animation);
-            else if (entity.Animation != null && entity.Animation.Id != state.Animation.Id)
-            {
-                entity.Animation = state.Animation;
-            }
-            else entity.Animation = state.Animation;
 
             entity.Conditions = CheckConditions(entity.Conditions, state.Conditions);
             entity.StartData = CheckDownstreamData(entity.StartData, state.StartData);
@@ -111,7 +105,30 @@ namespace SolaceTK.Core.Controllers.Behaviors
             entity.EndData = CheckDownstreamData(entity.EndData, state.EndData);
             entity.Events = CheckEvents(entity.Events, state.Events);
 
-            if (state.NoOp) entity.NextStates = CheckNextStates(entity.NextStates, state.NextStates);
+            // NoOp States use Next State Children - Otherwise, normal states use Animations and others:
+            if (state.NoOp) entity.NextStates = CheckNextStates(entity, entity.NextStates, state.NextStates);
+            else
+            {
+                if (entity.Animation != null && entity.Animation.Id == state.Animation.Id) _context.Entry(entity.Animation).CurrentValues.SetValues(state.Animation);
+                else if (entity.Animation != null && entity.Animation.Id != state.Animation.Id)
+                {
+                    entity.Animation = state.Animation;
+                }
+                else entity.Animation = state.Animation;
+            }
+
+            Console.WriteLine("#---------");
+            Console.WriteLine("### Start Short View ###");
+            Console.WriteLine(_context.ChangeTracker.DebugView.ShortView);
+            Console.WriteLine("### End Short View ###");
+
+            Console.WriteLine("#---------");
+
+            Console.WriteLine("### Start Long View ###");
+            Console.WriteLine(_context.ChangeTracker.DebugView.LongView);
+            Console.WriteLine("### End Long View ###");
+            Console.WriteLine("#---------");
+
 
             try
             {
@@ -149,7 +166,7 @@ namespace SolaceTK.Core.Controllers.Behaviors
         }
 
         [HttpGet("{id}/export")]
-        public async Task<ActionResult> ExportState(int id, [FromQuery]bool noop = false)
+        public async Task<ActionResult> ExportState(int id, [FromQuery] bool noop = false)
         {
             var model = await _context.States
                 .Include(x => x.Animation).ThenInclude(x => x.ActFrameData).ThenInclude(x => x.Frames).ThenInclude(x => x.DownstreamData)
@@ -175,13 +192,15 @@ namespace SolaceTK.Core.Controllers.Behaviors
         private ICollection<BehaviorEvent> CheckEvents(ICollection<BehaviorEvent> entities, ICollection<BehaviorEvent> model)
         {
             if (model == null || model.Count == 0) return null;
+            Console.WriteLine("Checking Events...");
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<BehaviorEvent>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedEvents = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedEvents = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedEvents);
             }
 
@@ -191,7 +210,7 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 if (temp[i].Id > 0)
                 {
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) temp.RemoveAt(i);
+                    if (m == null) removed.Add(temp[i].Id);
                     else
                     {
                         _context.Entry(temp[i]).CurrentValues.SetValues(m);
@@ -204,26 +223,30 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 else _context.Events.Add(temp[i]);
             }
 
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
+            Console.WriteLine("Events Checked...");
             return temp;
         }
 
         private ICollection<BehaviorMessage> CheckMessages(ICollection<BehaviorMessage> entities, ICollection<BehaviorMessage> model)
         {
             if (model == null || model.Count == 0) return null;
+            Console.WriteLine("Checking Messages...");
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<BehaviorMessage>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedEvents = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedEvents = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedEvents);
             }
 
             for (var i = 0; i < temp.Count; i++)
             {
                 var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                if (m == null) temp.RemoveAt(i);
+                if (m == null) removed.Add(temp[i].Id);
                 else if (temp[i].Id > 0)
                 {
                     _context.Entry(temp[i]).CurrentValues.SetValues(m);
@@ -231,20 +254,23 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 }
                 else _context.Messages.Add(m);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
+            Console.WriteLine("Messages Checked...");
             return temp;
         }
 
         private ICollection<SolTkData> CheckDownstreamData(ICollection<SolTkData> entities, ICollection<SolTkData> model)
         {
             if (model == null || model.Count == 0) return null;
+            Console.WriteLine("Checking Data...");
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkData>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -254,29 +280,32 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 {
                     // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
                     else _context.Entry(temp[i]).CurrentValues.SetValues(m);
                 }
                 else _context.AttributeData.Add(temp[i]);
             }
-
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
+            Console.WriteLine("Data Checked...");
             return temp;
         }
 
         private ICollection<SolTkCondition> CheckConditions(ICollection<SolTkCondition> entities, ICollection<SolTkCondition> model)
         {
             if (model == null || model.Count == 0) return null;
+            Console.WriteLine("Checking Conditions...");
 
-            var temp = entities.ToList();
+            var temp = entities.ToList() ?? new List<SolTkCondition>();
+            var removed = new List<int>();
 
             // Merge Lists:
             if (temp.Count != model.Count)
             {
-                var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
+                var addedData = model.Where(x => x.Id == 0 || !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
             }
 
@@ -286,27 +315,31 @@ namespace SolaceTK.Core.Controllers.Behaviors
                 {
                     // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
                     var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) 
+                    if (m == null)
                     {
                         _context.Entry(temp[i]).State = EntityState.Deleted;
-                        temp.RemoveAt(i);
+                        removed.Add(temp[i].Id);
                     }
                     else _context.Entry(temp[i]).CurrentValues.SetValues(m);
                 }
                 else _context.ConditionsData.Add(temp[i]);
             }
 
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
+            Console.WriteLine("Conditions Checked...");
             return temp;
         }
 
-        private ICollection<BehaviorState> CheckNextStates(ICollection<BehaviorState> entities, ICollection<BehaviorState> model)
+        private ICollection<BehaviorState> CheckNextStates(BehaviorState parent, ICollection<BehaviorState> entities, ICollection<BehaviorState> model)
         {
             if (model == null || model.Count == 0) return null;
+            Console.WriteLine("Checking NextStates...");
 
-            var temp = entities.ToList();
+            var temp = entities != null ? entities.ToList() : new List<BehaviorState>();
+            var removed = new List<int>();
 
-            // Merge Lists:
-            if (temp.Count != model.Count)
+            // Merge Lists: (Adding Items, Entity Count is less than Model Count:)
+            if (temp.Count < model.Count)
             {
                 var addedData = model.Where(x => !temp.Any(t => t.Id == x.Id));
                 temp.AddRange(addedData);
@@ -316,17 +349,13 @@ namespace SolaceTK.Core.Controllers.Behaviors
             {
                 if (temp[i].Id > 0)
                 {
-                    // Updates the underlying Entity to the Model - or Null if the ID isn't found (Removing / Breaking relationship);
-                    var m = model.FirstOrDefault(e => e.Id == temp[i].Id);
-                    if (m == null) temp.RemoveAt(i);
-                    else
-                    {
-                        _context.Entry(temp[i]).CurrentValues.SetValues(m);
-                    }
+                    if (!model.Any(e => e.Id == temp[i].Id)) removed.Add(temp[i].Id);
+                    else _context.Entry(temp[i]).State = EntityState.Modified;
                 }
-                else _context.States.Add(temp[i]);
-            }
 
+            }
+            if (removed.Count > 0) temp.RemoveAll(s => removed.Contains(s.Id));
+            Console.WriteLine("NextStates Checked...");
             return temp;
         }
     }
