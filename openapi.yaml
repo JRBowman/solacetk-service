@@ -1,0 +1,5041 @@
+openapi: 3.0.1
+info:
+  title: SolaceTK.Standalone
+  version: '1.0'
+paths:
+  /api/v1/Behaviors/Animations:
+    get:
+      tags:
+        - Animations
+      parameters:
+        - name: noop
+          in: query
+          style: form
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AnimationIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimationIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AnimationIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Animations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+  '/api/v1/Behaviors/Animations/{id}':
+    get:
+      tags:
+        - Animations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+        - name: noop
+          in: query
+          style: form
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+    put:
+      tags:
+        - Animations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Animation'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AnimationISolTkOperation'
+    delete:
+      tags:
+        - Animations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Behaviors/Animations/{id}/export':
+    get:
+      tags:
+        - Animations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Artifacts/Instances:
+    post:
+      tags:
+        - Artifacts
+      parameters:
+        - name: collectionRoot
+          in: query
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactSolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactSolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactSolTkOperation'
+  /api/v1/Artifacts:
+    get:
+      tags:
+        - Artifacts
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Artifacts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+  '/api/v1/Artifacts/{id}':
+    get:
+      tags:
+        - Artifacts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+    put:
+      tags:
+        - Artifacts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkArtifact'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+    delete:
+      tags:
+        - Artifacts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Artifacts/{id}/export':
+    get:
+      tags:
+        - Artifacts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Work/Comments:
+    get:
+      tags:
+        - Comments
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkCommentIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Comments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+  '/api/v1/Work/Comments/{id}':
+    get:
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+    put:
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkComment'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkCommentISolTkOperation'
+    delete:
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Work/Comments/{id}/export':
+    get:
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Entities:
+    get:
+      tags:
+        - Entities
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Entities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+  '/api/v1/Entities/{id}':
+    get:
+      tags:
+        - Entities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+    put:
+      tags:
+        - Entities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEntity'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEntityISolTkOperation'
+    delete:
+      tags:
+        - Entities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Entities/{id}/export':
+    get:
+      tags:
+        - Entities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Events:
+    get:
+      tags:
+        - Events
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+  '/api/v1/Events/{id}':
+    get:
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+    put:
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+    delete:
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Events/{id}/export':
+    get:
+      tags:
+        - Events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Files/ase:
+    post:
+      tags:
+        - Files
+      parameters:
+        - name: SplitTags
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: SplitLayers
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: AseImportMode
+          in: query
+          style: form
+          schema:
+            $ref: '#/components/schemas/AseImportMode'
+        - name: SheetType
+          in: query
+          style: form
+          schema:
+            $ref: '#/components/schemas/AseSheetType'
+        - name: Tag
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: FromFrame
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: ToFrame
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Files:
+    post:
+      tags:
+        - Files
+      responses:
+        '200':
+          description: Success
+  /api/v1/Health:
+    get:
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServiceHealthReport'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceHealthReport'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ServiceHealthReport'
+  /api/v1/Health/Inventory:
+    get:
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventoryReport'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReport'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReport'
+  /api/v1/Hubs:
+    get:
+      tags:
+        - Hubs
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Hubs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+  '/api/v1/Hubs/{id}':
+    get:
+      tags:
+        - Hubs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+    put:
+      tags:
+        - Hubs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkEvent'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkEventISolTkOperation'
+    delete:
+      tags:
+        - Hubs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Hubs/{id}/export':
+    get:
+      tags:
+        - Hubs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Interfaces/Huds:
+    get:
+      tags:
+        - Huds
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HudIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HudIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HudIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Huds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+  '/api/v1/Interfaces/Huds/{id}':
+    get:
+      tags:
+        - Huds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+    put:
+      tags:
+        - Huds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Hud'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HudISolTkOperation'
+    delete:
+      tags:
+        - Huds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Interfaces/Huds/{id}/export':
+    get:
+      tags:
+        - Huds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Work/Items:
+    get:
+      tags:
+        - Items
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkItemIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+  '/api/v1/Work/Items/{id}':
+    get:
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+    put:
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkItem'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkItemISolTkOperation'
+    delete:
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Work/Items/{id}/export':
+    get:
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Environments/Maps:
+    get:
+      tags:
+        - Maps
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MapIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MapIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Maps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Map'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+  '/api/v1/Environments/Maps/{id}':
+    get:
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+    put:
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Map'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MapISolTkOperation'
+    delete:
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Environments/Maps/{id}/export':
+    get:
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Work/Projects:
+    get:
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkProjectIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Projects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+  '/api/v1/Work/Projects/{id}':
+    get:
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+    put:
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WorkProject'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WorkProjectISolTkOperation'
+    delete:
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Work/Projects/{id}/export':
+    get:
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Sounds/Sets:
+    get:
+      tags:
+        - Sets
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSetIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Sets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+  '/api/v1/Sounds/Sets/{id}':
+    get:
+      tags:
+        - Sets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+    put:
+      tags:
+        - Sets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SoundSet'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSetISolTkOperation'
+    delete:
+      tags:
+        - Sets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Sounds/Sets/{id}/export':
+    get:
+      tags:
+        - Sets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Sounds/Sources:
+    get:
+      tags:
+        - Sources
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSourceIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Sources
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+  '/api/v1/Sounds/Sources/{id}':
+    get:
+      tags:
+        - Sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+    put:
+      tags:
+        - Sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SoundSource'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SoundSourceISolTkOperation'
+    delete:
+      tags:
+        - Sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Sounds/Sources/{id}/export':
+    get:
+      tags:
+        - Sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Behaviors/States:
+    get:
+      tags:
+        - States
+      parameters:
+        - name: noop
+          in: query
+          style: form
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkStateIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateIEnumerableISolTkOperation'
+    post:
+      tags:
+        - States
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+  '/api/v1/Behaviors/States/{id}':
+    get:
+      tags:
+        - States
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+        - name: noop
+          in: query
+          style: form
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+    put:
+      tags:
+        - States
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkState'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkStateISolTkOperation'
+    delete:
+      tags:
+        - States
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Behaviors/States/{id}/export':
+    get:
+      tags:
+        - States
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Behaviors/Systems:
+    get:
+      tags:
+        - Systems
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Systems
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+  '/api/v1/Behaviors/Systems/{id}':
+    get:
+      tags:
+        - Systems
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+    put:
+      tags:
+        - Systems
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SolTkSystem'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkSystemISolTkOperation'
+    delete:
+      tags:
+        - Systems
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Behaviors/Systems/{id}/export':
+    get:
+      tags:
+        - Systems
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  '/api/v1/Behaviors/Systems/{id}/atlas':
+    get:
+      tags:
+        - Systems
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SolTkArtifactISolTkOperation'
+  /api/v1/Environments/TileSets:
+    get:
+      tags:
+        - TileSets
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TileSetIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileSetIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TileSetIEnumerableISolTkOperation'
+    post:
+      tags:
+        - TileSets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+  '/api/v1/Environments/TileSets/{id}':
+    get:
+      tags:
+        - TileSets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+    put:
+      tags:
+        - TileSets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TileSet'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TileSetISolTkOperation'
+    delete:
+      tags:
+        - TileSets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Environments/TileSets/{id}/export':
+    get:
+      tags:
+        - TileSets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /api/v1/Story/Timelines:
+    get:
+      tags:
+        - Timelines
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimelineIEnumerableISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineIEnumerableISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimelineIEnumerableISolTkOperation'
+    post:
+      tags:
+        - Timelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+  '/api/v1/Story/Timelines/{id}':
+    get:
+      tags:
+        - Timelines
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+    put:
+      tags:
+        - Timelines
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Timeline'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimelineISolTkOperation'
+    delete:
+      tags:
+        - Timelines
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanISolTkOperation'
+  '/api/v1/Story/Timelines/{id}/export':
+    get:
+      tags:
+        - Timelines
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    Animation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        actFrameData:
+          $ref: '#/components/schemas/AnimationData'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkComponent'
+          nullable: true
+      additionalProperties: false
+    AnimationData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        frames:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnimationFrame'
+          nullable: true
+        enabled:
+          type: boolean
+        loop:
+          type: boolean
+        invert:
+          type: boolean
+        mirror:
+          type: boolean
+        speed:
+          type: number
+          format: float
+        runCount:
+          type: integer
+          format: int32
+        artifactId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AnimationFrame:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        order:
+          type: integer
+          format: int32
+        speed:
+          type: number
+          format: float
+        duration:
+          type: number
+          format: float
+        frameData:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        x:
+          type: integer
+          format: int32
+        y:
+          type: integer
+          format: int32
+        downstreamData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+      additionalProperties: false
+    AnimationIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Animation'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AnimationISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Animation'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AseImportMode:
+      enum:
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
+    AseSheetType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+    BooleanISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CollisionDetectionType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      type: integer
+      format: int32
+    EntityPhysicsType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      type: integer
+      format: int32
+    EntityType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+    Hud:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/HudElement'
+          nullable: true
+      additionalProperties: false
+    HudElement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/HudElementType'
+        originType:
+          $ref: '#/components/schemas/OriginType'
+        positionX:
+          type: integer
+          format: int32
+        positionY:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+      additionalProperties: false
+    HudElementType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      type: integer
+      format: int32
+    HudIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hud'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    HudISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Hud'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    InventoryReport:
+      type: object
+      properties:
+        projects:
+          type: integer
+          format: int32
+        behaviors:
+          type: integer
+          format: int32
+        states:
+          type: integer
+          format: int32
+        animations:
+          type: integer
+          format: int32
+        controllers:
+          type: integer
+          format: int32
+        events:
+          type: integer
+          format: int32
+        maps:
+          type: integer
+          format: int32
+        tilesets:
+          type: integer
+          format: int32
+        interfaces:
+          type: integer
+          format: int32
+        soundSets:
+          type: integer
+          format: int32
+        resourceCollections:
+          type: integer
+          format: int32
+        timelines:
+          type: integer
+          format: int32
+        storyCards:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Map:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapLayer'
+          nullable: true
+        cells:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapCell'
+          nullable: true
+        chunks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapChunk'
+          nullable: true
+        tileSet:
+          $ref: '#/components/schemas/TileSet'
+      additionalProperties: false
+    MapCell:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        x:
+          type: integer
+          format: int32
+        y:
+          type: integer
+          format: int32
+        colorKey:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+        enterData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        enterMessages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkMessage'
+          nullable: true
+        activeData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        behaviorEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEvent'
+          nullable: true
+        exitMessages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkMessage'
+          nullable: true
+        exitData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+      additionalProperties: false
+    MapChunk:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        colorKey:
+          type: string
+          nullable: true
+        cells:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapCell'
+          nullable: true
+      additionalProperties: false
+    MapIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    MapISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Map'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    MapLayer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        layerData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        enabled:
+          type: boolean
+        artifactId:
+          type: integer
+          format: int32
+        layerName:
+          type: string
+          nullable: true
+        sortingLayer:
+          type: string
+          nullable: true
+        layerOrder:
+          type: integer
+          format: int32
+        tintColor:
+          type: string
+          nullable: true
+        isCollidable:
+          type: boolean
+        isBreakable:
+          type: boolean
+        parallaxDistance:
+          type: number
+          format: float
+        parallaxEnabled:
+          type: boolean
+        parallaxX:
+          type: boolean
+        parallaxY:
+          type: boolean
+      additionalProperties: false
+    MessageTarget:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+    OriginType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      type: integer
+      format: int32
+    RuleCheckType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      type: integer
+      format: int32
+    ServiceHealthReport:
+      type: object
+      properties:
+        serviceStatus:
+          type: array
+          items:
+            type: string
+          nullable: true
+        dataStatus:
+          type: array
+          items:
+            type: string
+          nullable: true
+        asepriteStatus:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Shape:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        originX:
+          type: integer
+          format: int32
+        originY:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/ShapeType'
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShapePoint'
+          nullable: true
+      additionalProperties: false
+    ShapePoint:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+      additionalProperties: false
+    ShapeType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      type: integer
+      format: int32
+    SolTkArtifact:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        artifactName:
+          type: string
+          nullable: true
+        artifactExtension:
+          type: string
+          nullable: true
+        artifactUrl:
+          type: string
+          nullable: true
+        artifactDirectory:
+          type: string
+          nullable: true
+        collectionRoot:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SolTkArtifactIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkArtifact'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkArtifactISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SolTkArtifact'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkArtifactSolTkOperation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/SolTkArtifact'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkArtifactSolTkOperation'
+          nullable: true
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkComponent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        positionX:
+          type: number
+          format: float
+        positionY:
+          type: number
+          format: float
+        positionZ:
+          type: number
+          format: float
+        rotationX:
+          type: number
+          format: float
+        rotationY:
+          type: number
+          format: float
+        rotationZ:
+          type: number
+          format: float
+        scaleX:
+          type: number
+          format: float
+        scaleY:
+          type: number
+          format: float
+        scaleZ:
+          type: number
+          format: float
+        colorKey:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+        componentData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        componentType:
+          $ref: '#/components/schemas/SolTkComponentTypes'
+        entityId:
+          type: integer
+          format: int32
+        behaviorAnimationId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SolTkComponentTypes:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+      type: integer
+      format: int32
+    SolTkCondition:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        key:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        operator:
+          $ref: '#/components/schemas/SolTkOperator'
+        type:
+          $ref: '#/components/schemas/SolTkDataType'
+        floatData:
+          type: number
+          format: float
+          nullable: true
+        intData:
+          type: number
+          format: float
+          nullable: true
+        boolData:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    SolTkData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        key:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        operator:
+          $ref: '#/components/schemas/SolTkDataOperator'
+        type:
+          $ref: '#/components/schemas/SolTkDataType'
+        intData:
+          type: integer
+          format: int32
+          nullable: true
+        floatData:
+          type: number
+          format: float
+          nullable: true
+        boolData:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    SolTkDataOperator:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+      type: integer
+      format: int32
+    SolTkDataType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      type: integer
+      format: int32
+    SolTkEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        colorKey:
+          type: string
+          nullable: true
+        worldPositionX:
+          type: number
+          format: float
+        worldPositionY:
+          type: number
+          format: float
+        worldPositionZ:
+          type: number
+          format: float
+        mapPositionX:
+          type: integer
+          format: int32
+        mapPositionY:
+          type: integer
+          format: int32
+        collisionType:
+          $ref: '#/components/schemas/CollisionDetectionType'
+        useFriction:
+          type: boolean
+        affectedByGravity:
+          type: boolean
+        canMove:
+          type: boolean
+        mass:
+          type: number
+          format: float
+        behaviorSystemId:
+          type: integer
+          format: int32
+        variableData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkComponent'
+          nullable: true
+        soundSet:
+          $ref: '#/components/schemas/SoundSet'
+        type:
+          $ref: '#/components/schemas/EntityType'
+        physicsType:
+          $ref: '#/components/schemas/EntityPhysicsType'
+      additionalProperties: false
+    SolTkEntityIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEntity'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkEntityISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SolTkEntity'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        isPhysicsEvent:
+          type: boolean
+        cooldownDuration:
+          type: number
+          format: float
+        hasCooldown:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkCondition'
+          nullable: true
+        downstreamData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkMessage'
+          nullable: true
+      additionalProperties: false
+    SolTkEventIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEvent'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkEventISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SolTkEvent'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkException:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        data:
+          type: object
+          additionalProperties: { }
+          nullable: true
+        stackTrace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SolTkMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        targetName:
+          type: string
+          nullable: true
+        targetType:
+          $ref: '#/components/schemas/MessageTarget'
+      additionalProperties: false
+    SolTkOperationResultCode:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+      type: integer
+      format: int32
+    SolTkOperationStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        logs:
+          type: array
+          items:
+            type: string
+          nullable: true
+        exceptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkException'
+          nullable: true
+        errors:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SolTkOperator:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      type: integer
+      format: int32
+    SolTkState:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        stateType:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/StateType'
+        runCount:
+          type: integer
+          format: int32
+        noOp:
+          type: boolean
+        enabled:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkCondition'
+          nullable: true
+        animation:
+          $ref: '#/components/schemas/Animation'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEvent'
+          nullable: true
+        startData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        actData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        endData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        nextStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkState'
+          nullable: true
+        behaviorSystemId:
+          type: integer
+          format: int32
+        parentId:
+          type: integer
+          format: int32
+        startDelay:
+          type: number
+          format: float
+        endDelay:
+          type: number
+          format: float
+        interruptable:
+          type: boolean
+      additionalProperties: false
+    SolTkStateIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkState'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkStateISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SolTkState'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkSystem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        varData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        behaviors:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkState'
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEvent'
+          nullable: true
+      additionalProperties: false
+    SolTkSystemIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkSystem'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkSystemISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SolTkSystem'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SolTkUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/SolTkUserType'
+      additionalProperties: false
+    SolTkUserType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      type: integer
+      format: int32
+    SoundSet:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/SoundSource'
+          nullable: true
+      additionalProperties: false
+    SoundSetIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SoundSet'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SoundSetISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SoundSet'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SoundSource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        volume:
+          type: number
+          format: float
+        pitch:
+          type: number
+          format: float
+        playOnLoad:
+          type: boolean
+        clipName:
+          type: string
+          nullable: true
+        channel:
+          type: string
+          nullable: true
+        isLoop:
+          type: boolean
+        loopStartTime:
+          type: string
+          format: date-time
+        loopEndTime:
+          type: string
+          format: date-time
+        artifactId:
+          type: integer
+          format: int32
+        isReactive:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkCondition'
+          nullable: true
+        soundData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+      additionalProperties: false
+    SoundSourceIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SoundSource'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    SoundSourceISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SoundSource'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    StateType:
+      enum:
+        - 0
+        - 1
+      type: integer
+      format: int32
+    StoryCard:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        completed:
+          type: boolean
+        title:
+          type: string
+          nullable: true
+        order:
+          type: integer
+          format: int32
+        startTime:
+          type: integer
+          format: int64
+        duration:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkCondition'
+          nullable: true
+        downstreamData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkEvent'
+          nullable: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkMessage'
+          nullable: true
+      additionalProperties: false
+    Tile:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        colorKey:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/TileType'
+        mode:
+          $ref: '#/components/schemas/TileTransformMode'
+        lx:
+          type: integer
+          format: int32
+        ly:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        originType:
+          $ref: '#/components/schemas/OriginType'
+        originX:
+          type: integer
+          format: int32
+        originY:
+          type: integer
+          format: int32
+        plx:
+          type: integer
+          format: int32
+        ply:
+          type: integer
+          format: int32
+        objectKey:
+          type: string
+          nullable: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkData'
+          nullable: true
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/TileRule'
+          nullable: true
+        isCollidable:
+          type: boolean
+        shape:
+          $ref: '#/components/schemas/Shape'
+        physicsShape:
+          $ref: '#/components/schemas/ShapeType'
+        order:
+          type: integer
+          format: int32
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkComponent'
+          nullable: true
+      additionalProperties: false
+    TileRule:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        priority:
+          type: integer
+          format: int32
+        colorKey:
+          type: string
+          nullable: true
+        dataKey:
+          type: string
+          nullable: true
+        vx:
+          type: integer
+          format: int32
+        vy:
+          type: integer
+          format: int32
+        vm:
+          type: integer
+          format: int32
+        checkType:
+          $ref: '#/components/schemas/RuleCheckType'
+      additionalProperties: false
+    TileSet:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        tiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tile'
+          nullable: true
+        artifactId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TileSetIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TileSet'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TileSetISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TileSet'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TileTransformMode:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+    TileType:
+      enum:
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
+    Timeline:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        storyCards:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoryCard'
+          nullable: true
+        length:
+          type: integer
+          format: int64
+      additionalProperties: false
+    TimelineIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Timeline'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TimelineISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Timeline'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkComment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        comment:
+          type: string
+          nullable: true
+        artifacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkArtifact'
+          nullable: true
+      additionalProperties: false
+    WorkCommentIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkComment'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkCommentISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkComment'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        hoursEstimate:
+          type: number
+          format: float
+        hoursActual:
+          type: number
+          format: float
+        payment:
+          $ref: '#/components/schemas/WorkPayment'
+        isPaid:
+          type: boolean
+        workProjectId:
+          type: integer
+          format: int32
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkComment'
+          nullable: true
+        artifacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SolTkArtifact'
+          nullable: true
+      additionalProperties: false
+    WorkItemIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkItem'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkItemISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkItem'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkPayment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        project:
+          $ref: '#/components/schemas/WorkProject'
+        paymentDate:
+          type: string
+          format: date-time
+        amount:
+          type: number
+          format: float
+        workItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkItem'
+          nullable: true
+      additionalProperties: false
+    WorkProject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/SolTkUser'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        totalEstimatedHours:
+          type: number
+          format: float
+        totalActualHours:
+          type: number
+          format: float
+        paidHours:
+          type: number
+          format: float
+        totalPaid:
+          type: number
+          format: float
+        remainingPayment:
+          type: number
+          format: float
+        isProjectBillable:
+          type: boolean
+        workItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkItem'
+          nullable: true
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkPayment'
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkComment'
+          nullable: true
+      additionalProperties: false
+    WorkProjectIEnumerableISolTkOperation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkProject'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WorkProjectISolTkOperation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkProject'
+        status:
+          $ref: '#/components/schemas/SolTkOperationStatus'
+        resultCode:
+          $ref: '#/components/schemas/SolTkOperationResultCode'
+        correlationId:
+          type: integer
+          format: int32
+        operationName:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
